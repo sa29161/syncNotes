@@ -25,6 +25,7 @@ public class Note extends AppCompatActivity {
     StickyNote note;
     FirebaseAuth fAuth;
     List<StickyNote> notes = new ArrayList<StickyNote>();
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,11 @@ public class Note extends AppCompatActivity {
             public void onClick(View view) {
 
                 String des = mNote.getText().toString().trim();
+                id = myRef.child(user.getUid()).push().getKey().toString().trim();
                 note.setDescription(des);
+                note.setId(id);
                 notes.add(note);
-                myRef.child(user.getUid()).push().setValue(notes.get(notes.size()-1));
+                myRef.child(user.getUid()).child(id).setValue(notes.get(notes.size()-1));
                // myRef.push().setValue(notes.get(notes.size()-1));
 
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));

@@ -2,6 +2,12 @@ package com.example.syncnotes;
 
 public class StickyNote {
 private String description;
+private String id;
+
+    public String getId() {
+        return id;
+    }
+
 
     public StickyNote(){
 
@@ -16,5 +22,7 @@ private String description;
     }
 
 
-
+    public void setId(String id) {
+        this.id = id;
+    }
 }
