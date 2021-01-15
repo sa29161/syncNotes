@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = null;
@@ -25,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Button mLogoutBtn;
     FirebaseAuth fAuth;
     Button createBtn;
-    Note note;
     DatabaseReference myRef;
-    ArrayList<StickyNote> notes;
     FirebaseUser user;
     FirebaseDatabase database;
 
@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        note = new Note();
-        notes = note.getNotes();
          database = FirebaseDatabase
                 .getInstance("https://syncnotes-7daca-default-rtdb.firebaseio.com/");
         fAuth = FirebaseAuth.getInstance();
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mShowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                readNotes();
+                startActivity(new Intent(getApplicationContext(),RetreiveData.class));
             }
         });
 
@@ -82,9 +80,11 @@ public class MainActivity extends AppCompatActivity {
         public void onDataChange(DataSnapshot dataSnapshot) {
             // This method is called once with the initial value and again
             // whenever data at this location is updated.
-            String value = dataSnapshot.child("-MQyWg9xzApwOi3cXq3P")
-                    .child("description").getValue().toString();
-            Log.d(TAG, "Value is: " + value);
+//            ArrayAdapter adapter = new ArrayAdapter<String>(this,
+            ////                    android.R.layout.simple_list_item_1,
+            ////                    list);
+            //
+            //           // Log.d(TAG, "Value is: " + value);
         }
 
         @Override

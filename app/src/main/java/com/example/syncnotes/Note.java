@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Note extends AppCompatActivity {
 
@@ -23,7 +24,7 @@ public class Note extends AppCompatActivity {
     DatabaseReference myRef;
     StickyNote note;
     FirebaseAuth fAuth;
-    ArrayList<StickyNote> notes = new ArrayList<StickyNote>();
+    List<StickyNote> notes = new ArrayList<StickyNote>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public class Note extends AppCompatActivity {
                 note.setDescription(des);
                 notes.add(note);
                 myRef.child(user.getUid()).push().setValue(notes.get(notes.size()-1));
+               // myRef.push().setValue(notes.get(notes.size()-1));
+
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
 
@@ -55,7 +58,7 @@ public class Note extends AppCompatActivity {
 
     }
 
-   public ArrayList<StickyNote> getNotes(){
+   public List<StickyNote> getNotes(){
         return this.notes;
     }
 }

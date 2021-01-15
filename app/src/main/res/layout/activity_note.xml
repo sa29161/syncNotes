@@ -15,13 +15,14 @@
 
     <EditText
         android:id="@+id/note"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Enter Note"
         android:inputType="textMultiLine"
-        tools:layout_editor_absoluteX="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="52dp" />
 
     <Button
